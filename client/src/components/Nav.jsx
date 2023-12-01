@@ -20,7 +20,7 @@ function NavTabs() {
           to="/Resume"
           className={`text-blue-500 hover:text-blue-700 ${currentPage === '/HomePage' ? 'font-bold' : ''}`}
         >
-          Resume
+          Login
         </Link>
       </li>
       <li className="nav-item">
