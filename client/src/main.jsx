@@ -4,11 +4,9 @@ import './index.css'
 
 // Bringing in the required imports from 'react-router-dom' to set up application routing behavior
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-
-
-
-import Home from './pages/HomePage.jsx';
+import Checkout from './pages/Checkout.jsx';
+import HomePage from './pages/HomePage.jsx';
+import Login from './pages/Login.jsx';
 
 
 // Define the accessible routes, and which components respond to which URL
@@ -20,7 +18,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <HomePage />,
+      },
+      {
+        path: '/Checkout',
+        element: <Checkout />
+      },
+      {
+        path: '/Login',
+        element: <Login />
       },
  
     ],
