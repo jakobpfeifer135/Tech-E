@@ -7,8 +7,9 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    products: async (parent, { category, name }) => {
+    products: async (parent, { category, name, brand, minPrice, maxPrice, sortMinPrice, sortMaxPrice }) => {
       const params = {};
+      let sortParams = "name";
 
       if (category) {
         params.category = category;
@@ -20,7 +21,34 @@ const resolvers = {
         };
       }
 
-      return await Product.find(params).populate('category');
+      if (brand) {
+        params.brand = {
+          $regex: brand,
+        };
+      }
+
+      if (minPrice) {
+        params.price = {
+          $gte: minPrice,
+        }
+      }
+
+      if (maxPrice) {
+        params.price = {
+          $lte: maxPrice,
+        }
+      }
+
+      if (sortMinPrice) {
+        sortParams = { price: 1 }
+      }
+
+      if (sortMaxPrice) {
+        sortParams = { price: -1 }
+      }
+
+
+      return await Product.find(params).sort(sortParams).populate('category');
     },
     product: async (parent, { _id }) => {
       return await Product.findById(_id).populate('category');
