@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
+  brand: {
+    type: String,
+  },
+  color: {
+    type: String,
+  },
   name: {
     type: String,
     required: true,
@@ -17,7 +23,7 @@ const productSchema = new Schema({
   price: {
     type: Number,
     required: true,
-    min: 0.99
+    min: 0.99,
   },
   quantity: {
     type: Number,
