@@ -11,32 +11,32 @@ function NavTabs() {
         <Link
           to="/"
           className={`text-blue-500 hover:text-blue-700 ${currentPage === '/' ? 'font-bold' : ''}`}
-        >
-          Home
+        >Home
         </Link>
       </li>
       <li className="nav-item">
         <Link
-          to="/Resume"
+          to="/HomePage"
           className={`text-blue-500 hover:text-blue-700 ${currentPage === '/HomePage' ? 'font-bold' : ''}`}
         >
-          Login/Sign Up
+          
         </Link>
       </li>
       <li className="nav-item">
         <Link
-          to="/Work"
+          to="/Login"
           className={`text-blue-500 hover:text-blue-700 ${currentPage === '/Login' ? 'font-bold' : ''}`}
         >
-          Checkout
+            Login/Sign Up
+          
         </Link>
       </li>
       <li className="nav-item">
         <Link
-          to="/Contact"
+          to="/Checkout"
           className={`text-blue-500 hover:text-blue-700 ${currentPage === '/Checkout' ? 'font-bold' : ''}`}
         >
-          
+          Checkout
         </Link>
       </li>
     </ul>
