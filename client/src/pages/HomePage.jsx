@@ -6,12 +6,7 @@ const main = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
 
-      <section className="bg-gray-100">
-        <div className="logo">
-          <img className='max-h-[200px] max-w-[200px]' src="../src/assets/images/Logo.webp" alt="Tech-E" />
-        </div>
-
-      </section>
+  
 
 
 
