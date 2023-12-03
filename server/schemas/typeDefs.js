@@ -29,6 +29,7 @@ const typeDefs = `
     email: String
     address: String
     orders: [Order]
+    wishlist: [ID]
   }
 
   type Checkout {
@@ -53,7 +54,7 @@ const typeDefs = `
 
   type Query {
     categories: [Category]
-    products(category: ID, name: String, brand: String, minPrice: Float, maxPrice: Float): [Product]
+    products(category: ID, name: String, brand: String, minPrice: Float, maxPrice: Float, sortMinPrice: Float, sortMaxPrice: Float): [Product]
     product(_id: ID!): Product
     user: User
     order(_id: ID!): Order
@@ -66,6 +67,8 @@ const typeDefs = `
     updateUser(firstName: String, lastName: String, email: String, password: String, address: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
+    addWishlist(productId: String!): User
+    removeWishlist(productId: String!): User
   }
 `;
 

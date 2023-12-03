@@ -166,6 +166,30 @@ const resolvers = {
 
       return { token, user };
     },
+    addWishlist: async (parent, { productId }, context) => {
+      if (context.user) {
+       
+       const user = await User.findByIdAndUpdate(context.user._id, {
+          $push: { wishlist: productId },
+        },{new: true});
+
+        return user;
+      }
+
+      throw AuthenticationError;
+    },
+    removeWishlist: async (parent, { productId }, context) => {
+      if (context.user) {
+       
+       const user = await User.findByIdAndUpdate(context.user._id, {
+          $pull: { wishlist: productId },
+        },{new: true});
+
+        return user;
+      }
+
+      throw AuthenticationError;
+    }
   },
 };
 
