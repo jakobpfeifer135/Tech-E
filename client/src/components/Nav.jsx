@@ -20,23 +20,23 @@ function NavTabs() {
           to="/Resume"
           className={`text-blue-500 hover:text-blue-700 ${currentPage === '/HomePage' ? 'font-bold' : ''}`}
         >
-          Login
+          Login/Sign Up
         </Link>
       </li>
       <li className="nav-item">
         <Link
           to="/Work"
-          className={`text-blue-500 hover:text-blue-700 ${currentPage === '/Work' ? 'font-bold' : ''}`}
+          className={`text-blue-500 hover:text-blue-700 ${currentPage === '/Login' ? 'font-bold' : ''}`}
         >
-          Projects
+          Checkout
         </Link>
       </li>
       <li className="nav-item">
         <Link
           to="/Contact"
-          className={`text-blue-500 hover:text-blue-700 ${currentPage === '/Contact' ? 'font-bold' : ''}`}
+          className={`text-blue-500 hover:text-blue-700 ${currentPage === '/Checkout' ? 'font-bold' : ''}`}
         >
-          Contact Me
+          
         </Link>
       </li>
     </ul>
