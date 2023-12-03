@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';  // Import useHistory
+import { useNavigate } from 'react-router-dom';  // Import useHistory
 
 export default function Contact() {
-  const history = useHistory();  // Initialize history
+  const history = useNavigate();  // Initialize history
 
   const [formData, setFormData] = useState({
     name: '',
