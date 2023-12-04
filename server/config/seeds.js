@@ -173,9 +173,14 @@ db.once('open', async () => {
   console.log('products seeded');
 
   await User.create({
-    firstName: 'Test',
-    lastName: 'User',
+    name: 'Test',
     email: 'test@email.com',
+    password: 'password12345'
+  });
+
+  await User.create({
+    name: 'Dale Cooper',
+    email: 'dale@fbi.gov',
     password: 'password12345'
   });
 
