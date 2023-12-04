@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link for routing
+import { Link } from 'react-router-dom';
+import PaymentForm from '../components/PaymentForm'; // Adjust the path accordingly
+import PaymentModal from '../components/PaymentModal'; // Adjust the path accordingly
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState([
@@ -8,6 +10,9 @@ const Checkout = () => {
     { id: 3, name: 'Product 3', description: 'Description of Product 3.', quantity: 1 },
     // Add more products as needed
   ]);
+
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleRemoveFromCart = (productId) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
@@ -19,6 +24,16 @@ const Checkout = () => {
         item.id === productId ? { ...item, quantity: newQuantity } : item
       )
     );
+  };
+
+  const handleModalCheckout = () => {
+    setShowModal(true);
+  };
+
+  const handleCheckout = () => {
+    // You can add any logic you need before showing the PaymentForm
+    setShowPaymentForm(true);
+    setShowModal(false); // Close the modal after the user clicks "Checkout" within the modal
   };
 
   return (
@@ -62,16 +77,32 @@ const Checkout = () => {
             <p className="text-xl text-gray-800">Your Shopping Cart is Empty</p>
           )}
         </div>
-        {/* Add a "Pay Now" button that links to the payment page */}
+        {/* Add a "Pay Now" button that opens the modal */}
         <div className="mt-8">
-          <Link to="/payment" className="bg-indigo-600 text-white py-2 px-4 rounded-md">
-            Checkout!
-          </Link>
+          {!showPaymentForm && (
+            <button
+              onClick={handleModalCheckout}
+              className="bg-indigo-600 text-white py-2 px-4 rounded-md"
+            >
+              Checkout!
+            </button>
+          )}
         </div>
+
+        {/* Include the PaymentModal component */}
+        {showModal && (
+          <PaymentModal>
+            <button onClick={handleCheckout} className="bg-indigo-600 text-white py-2 px-4 rounded-md">
+              Checkout!
+            </button>
+          </PaymentModal>
+        )}
+
+        {/* Include the PaymentForm component conditionally */}
+        {showPaymentForm && <PaymentForm />}
       </div>
     </div>
   );
 };
 
 export default Checkout;
-
