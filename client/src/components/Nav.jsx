@@ -22,12 +22,13 @@ function NavTabs() {
             Home
           </Link>
         </li>
+        
         <li className="nav-item">
           <Link
-            to="/HomePage"
-            className={`hover:text-gray-300 ${currentPage === '/HomePage' ? 'font-bold' : ''}`}
+            to="/Products"
+            className={`hover:text-gray-300 ${currentPage === '/Products' ? 'font-bold' : ''}`}
           >
-            {/* Add your link text here */}
+            Products
           </Link>
         </li>
         <li className="nav-item">
