@@ -10,7 +10,7 @@ function NavTabs() {
         <img className='max-h-[100px] max-w-[200px]' src="../src/assets/images/Logo.webp" alt="Tech-E" />
       </div>
 
-      <ul className="flex justify-end space-x-4 mr-5">
+      <ul className="flex items-center space-x-4 mr-5">
         <li className="nav-item">
           <Link
             to="/"
@@ -38,9 +38,9 @@ function NavTabs() {
         <li className="nav-item">
           <Link
             to="/Checkout"
-            className={`hover:text-gray-300 ${currentPage === '/Checkout' ? 'font-bold' : ''}`}
+            className={`hover:text-gray-300 ${currentPage === '/Checkout' ? 'font-bold' : ''} flex items-center`}
           >
-            <FaShoppingCart /> {/* Include the FaShoppingCart icon */}
+            <FaShoppingCart className="text-2xl" /> {/* Adjust the size with text-2xl or other utility classes */}
           </Link>
         </li>
       </ul>
