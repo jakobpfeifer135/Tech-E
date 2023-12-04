@@ -1,23 +1,19 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Nav from './components/Nav';
-import Main from './pages/HomePage';
-import ProductDetails from './components/ProductDetailsPage';
-import "./index.css"
+import { Outlet } from "react-router-dom";
+import Nav from './components/Nav'
+// import CartPage from './components/Cart';
+
 function App() {
   return (
     <div>
-      <Nav />
+
+     <Nav />
+     {/* <CartPage /> */}
       <main>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-        </Routes>
+        <Outlet />
       </main>
     </div>
   );
 }
 
 export default App;
-
 
