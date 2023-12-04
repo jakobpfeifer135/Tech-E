@@ -15,13 +15,13 @@ const Checkout = () => {
         <h2 className="text-3xl font-bold mb-8">Your Cart</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cartItems.map((product, index) => (
-            <div key={index} className="bg-gray-100 border-[#ecd398] border-4 p-6 rounded-lg shadow-md">
+            <div key={index} className="bg-gray-100 border-[--Gold] border-4 p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-bold mb-2 text-black">{product.name}</h3>
               <p className="text-black">{product.description}</p>
             </div>
           ))}
           {cartItems.length === 0 && (
-            <p className="text-xl text-gray-600">Your Shopping Cart is Empty</p>
+            <p className="text-xl text-gray-800">Your Shopping Cart is Empty</p>
           )}
         </div>
       </div>
