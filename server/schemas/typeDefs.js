@@ -6,7 +6,7 @@ const typeDefs = `
 
   type Product {
     _id: ID
-    brand: String
+    details: String
     name: String
     description: String
     color: String
@@ -44,7 +44,7 @@ const typeDefs = `
   input ProductInput {
     _id: ID
     color: String
-    brand: String
+    details: String
     purchaseQuantity: Int
     name: String
     image: String
@@ -54,7 +54,7 @@ const typeDefs = `
 
   type Query {
     categories: [Category]
-    products(category: ID, name: String, brand: String, minPrice: Float, maxPrice: Float, sortMinPrice: Float, sortMaxPrice: Float): [Product]
+    products(category: ID, name: String, details: String, minPrice: Float, maxPrice: Float, sortMinPrice: Float, sortMaxPrice: Float): [Product]
     product(_id: ID!): Product
     user: User
     order(_id: ID!): Order
