@@ -13,7 +13,9 @@ const Main = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+
     autoplaySpeed: 2500,
+
   };
   const products = [
     {
@@ -61,6 +63,7 @@ const Main = () => {
 
 
 
+
       <section className="bg-black">
         <div className="container mx-auto flex items-center justify-center h-[320px] relative">
           <Slider {...sliderSettings} className="w-full max-w-[900px]">
@@ -74,7 +77,9 @@ const Main = () => {
         </div>
       </section>
 
+
       <section className="py-16">
+
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Left section for text description and explore button */}
           <div className="lg:col-span-1">
@@ -92,6 +97,7 @@ const Main = () => {
             {/* Advanced Product Cards */}
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
+
             ))}
           </div>
         </div>
