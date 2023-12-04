@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {  useNavigate } from 'react-router-dom';  // Import useHistory
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER, LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
@@ -20,7 +20,7 @@ export default function Contact() {
   const [isExistingUser, setIsExistingUser] = useState(false);
 
   const [addUser, { error, data }] = useMutation(ADD_USER);
-  
+  // const [login, { error, data }] = useMutation(LOGIN_USER)
 
   const handleChange = (e) => {
     setFormData({
@@ -29,40 +29,65 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData)
+
     if (isExistingUser) {
-      // Simulate login (replace with actual API request)
-      console.log('Login Submitted:', { email: formData.email, password: formData.password });
-      // Redirect to the home page
-      history.push('/');  // Assuming '/' is the route for the home page
+      //if they are an existing user, call the login mutation
+      try {
+        const { data } = await login({
+          variables: { ...formData },
+        });
+  
+        Auth.login(data.login.token);
+        
+        console.log('Login Submitted:', { email: formData.email, password: formData.password });
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
+        // Redirect to the home page
+        history.push('/');  // Assuming '/' is the route for the home page
+      } catch (err) {
+        console.error(err);
+      }
+      
     } else {
-      // Simulate sign up (replace with actual API request)
-      if (userDoesNotExist(formData.email)) {
-        window.alert('User does not exist. Please sign up.');
-      } else {
+      try {
+        const { data } = await addUser({
+          variables: { ...formData },
+        });
+  
+        Auth.login(data.addUser.token);
+        
         console.log('Sign Up Submitted:', formData);
         // Reset the form after submission
         setFormData({
           name: '',
           email: '',
-          phone: '',
           password: '',
           confirmPassword: '',
         });
+
+      } catch (err) {
+        console.error(err);
       }
-    }
-  };
+       
+      }
+    };
+  
 
-  const userDoesNotExist = (email) => {
-    // Add logic to check if the user with the given email exists
-    // Replace the following line with your actual logic
-    return !existingUsers.includes(email);
-  };
+  // const userDoesNotExist = (email) => {
+  //   // Add logic to check if the user with the given email exists
+  //   // Replace the following line with your actual logic
+  //   return !existingUsers.includes(email);
+  // };
 
-  // Dummy data for existing users (replace with actual data or API call)
-  const existingUsers = ['user1@example.com', 'user2@example.com'];
+  // // Dummy data for existing users (replace with actual data or API call)
+  // const existingUsers = ['user1@example.com', 'user2@example.com'];
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -134,7 +159,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {!isExistingUser && (
+              {/* {!isExistingUser && ( */}
                 <div>
                   <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900">
                     Confirm Password
@@ -152,7 +177,7 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-              )}
+              {/* )} */}
             </>
           )}
 
