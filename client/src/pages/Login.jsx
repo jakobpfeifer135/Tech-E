@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+
 import {  useNavigate } from 'react-router-dom';  // Import useHistory
+
 
 export default function Contact() {
   const history = useNavigate();  // Initialize history
