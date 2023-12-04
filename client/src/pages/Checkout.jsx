@@ -12,7 +12,6 @@ const Checkout = () => {
   ]);
 
   const [showPaymentForm, setShowPaymentForm] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   const handleRemoveFromCart = (productId) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
@@ -26,14 +25,9 @@ const Checkout = () => {
     );
   };
 
-  const handleModalCheckout = () => {
-    setShowModal(true);
-  };
-
   const handleCheckout = () => {
     // You can add any logic you need before showing the PaymentForm
     setShowPaymentForm(true);
-    setShowModal(false); // Close the modal after the user clicks "Checkout" within the modal
   };
 
   return (
@@ -77,25 +71,15 @@ const Checkout = () => {
             <p className="text-xl text-gray-800">Your Shopping Cart is Empty</p>
           )}
         </div>
-        {/* Add a "Pay Now" button that opens the modal */}
-        <div className="mt-8">
-          {!showPaymentForm && (
-            <button
-              onClick={handleModalCheckout}
-              className="bg-indigo-600 text-white py-2 px-4 rounded-md"
-            >
-              Checkout!
-            </button>
-          )}
-        </div>
 
-        {/* Include the PaymentModal component */}
-        {showModal && (
-          <PaymentModal>
-            <button onClick={handleCheckout} className="bg-indigo-600 text-white py-2 px-4 rounded-md">
-              Checkout!
-            </button>
-          </PaymentModal>
+        {/* Add a "Checkout" button that triggers the payment modal */}
+        {!showPaymentForm && cartItems.length > 0 && (
+          <button
+            onClick={handleCheckout}
+            className="bg-indigo-600 text-white py-2 px-4 rounded-md mt-4"
+          >
+            Checkout!
+          </button>
         )}
 
         {/* Include the PaymentForm component conditionally */}

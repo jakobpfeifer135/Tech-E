@@ -15,10 +15,25 @@ const modalStyles = {
 };
 
 const PaymentModal = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  const openPaymentModal = () => setPaymentModalOpen(true);
+  const closePaymentModal = () => setPaymentModalOpen(false);
+
+  const openConfirmationModal = () => setConfirmationModalOpen(true);
+  const closeConfirmationModal = () => setConfirmationModalOpen(false);
+
+  const handlePayNow = () => {
+    openPaymentModal();
+  };
+
+  const handleConfirmOrder = () => {
+    // Perform any additional actions you need when the user confirms the order
+    // This could include sending the order to the server, updating state, etc.
+    closeConfirmationModal();
+    closePaymentModal();
+  };
 
   return (
     <>
@@ -27,7 +42,7 @@ const PaymentModal = () => {
 
         <div>
           <button
-            onClick={openModal}
+            onClick={handlePayNow}
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Pay Now
@@ -35,13 +50,32 @@ const PaymentModal = () => {
         </div>
       </div>
 
+      {/* Payment Modal */}
       <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
+        isOpen={isPaymentModalOpen}
+        onRequestClose={closePaymentModal}
         style={modalStyles}
-        contentLabel="Forgot Anything Modal"
+        contentLabel="Payment Modal"
       >
-        <PaymentForm closeModal={closeModal} />
+        <PaymentForm closeModal={closePaymentModal} openConfirmationModal={openConfirmationModal} />
+      </Modal>
+
+      {/* Confirmation Modal */}
+      <Modal
+        isOpen={isConfirmationModalOpen}
+        onRequestClose={closeConfirmationModal}
+        style={modalStyles}
+        contentLabel="Confirmation Modal"
+      >
+        <div className="text-center">
+          <p>Are you sure you are ready to checkout?</p>
+          <button
+            onClick={handleConfirmOrder}
+            className="bg-indigo-600 text-white py-2 px-4 rounded-md mt-4"
+          >
+            Confirm Order
+          </button>
+        </div>
       </Modal>
     </>
   );
