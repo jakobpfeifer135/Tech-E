@@ -8,7 +8,7 @@ import { ADD_USER, LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 export default function Contact() {
-  const history = useNavigate();  // Initialize history
+  const history = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -29,40 +29,73 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData)
     if (isExistingUser) {
       // Simulate login (replace with actual API request)
-      console.log('Login Submitted:', { email: formData.email, password: formData.password });
-      // Redirect to the home page
-      history.push('/');  // Assuming '/' is the route for the home page
+      try {
+        const response = await login(formData.email, formData.password);
+        console.log('Login Response:', response);
+        // Redirect to the home page
+        history(); // Assuming '/' is the route for the home page
+      } catch (error) {
+        console.error('Login Error:', error.message);
+        // Handle login error
+      }
     } else {
       // Simulate sign up (replace with actual API request)
-      if (userDoesNotExist(formData.email)) {
-        window.alert('User does not exist. Please sign up.');
-      } else {
-        console.log('Sign Up Submitted:', formData);
-        // Reset the form after submission
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          password: '',
-          confirmPassword: '',
-        });
+      try {
+        const response = await signUp(formData);
+        console.log('Sign Up Response:', response);
+
+        if (response && response.userExists) {
+          // User already exists, show alert and redirect to login
+          window.alert('User already exists. Please log in.');
+          setIsExistingUser(true); // Switch to the login form
+        } else {
+          // Reset the form after successful sign-up
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            password: '',
+            confirmPassword: '',
+          });
+        }
+      } catch (error) {
+        console.error('Sign Up Error:', error.message);
+        // Handle sign-up error
       }
     }
   };
 
-  const userDoesNotExist = (email) => {
-    // Add logic to check if the user with the given email exists
-    // Replace the following line with your actual logic
-    return !existingUsers.includes(email);
+  // Modify the signUp function to check if the user already exists
+  const signUp = async (userData) => {
+    // Replace the following line with your actual sign-up API call
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simulate success
+        resolve({ message: 'User created successfully' });
+        // Simulate user already exists
+        // resolve({ userExists: true });
+        // Simulate error
+        // reject(new Error('Failed to create user'));
+      }, 1000);
+    });
   };
 
-  // Dummy data for existing users (replace with actual data or API call)
-  const existingUsers = ['user1@example.com', 'user2@example.com'];
+  const login = async (email, password) => {
+    // Replace the following line with your actual login API call
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simulate success
+        resolve({ message: 'Login successful' });
+        // Simulate error
+        // reject(new Error('Invalid credentials'));
+      }, 1000);
+    });
+  };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -161,6 +194,11 @@ export default function Contact() {
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                 Password
               </label>
+              <div className="text-sm">
+                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    Forgot password?
+                  </a>
+                </div>
               <div className="mt-2">
                 <input
                   id="password"

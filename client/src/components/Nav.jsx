@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import {FaShoppingCart} from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 
 function NavTabs() {
   const currentPage = useLocation().pathname;
