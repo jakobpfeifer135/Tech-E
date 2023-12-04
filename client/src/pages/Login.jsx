@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import {  useNavigate } from 'react-router-dom';  // Import useHistory
+
+import { useMutation } from '@apollo/client';
+import { ADD_USER, LOGIN_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
 
 export default function Contact() {
   const history = useNavigate();
@@ -7,12 +13,14 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     password: '',
     confirmPassword: '',
   });
 
   const [isExistingUser, setIsExistingUser] = useState(false);
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -23,7 +31,7 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(formData)
     if (isExistingUser) {
       // Simulate login (replace with actual API request)
       try {
@@ -186,6 +194,11 @@ export default function Contact() {
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                 Password
               </label>
+              <div className="text-sm">
+                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    Forgot password?
+                  </a>
+                </div>
               <div className="mt-2">
                 <input
                   id="password"

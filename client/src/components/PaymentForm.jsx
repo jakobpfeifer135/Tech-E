@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 
 const PaymentForm = ({ closeModal }) => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,13 @@ const PaymentForm = ({ closeModal }) => {
     // You can access the form data from the formData state
     console.log('Form submitted:', formData);
   };
+
+//   const history = useHistory();
+
+//   const handleGoBack = () => {
+//     // You can replace '/cart' with the actual route for your cart page
+//     history.push('/Checkout');
+//   };
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -126,9 +134,9 @@ const PaymentForm = ({ closeModal }) => {
       <div>
         <button
           onClick={closeModal}
-          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-2"
         >
-          Close
+          Go Back
         </button>
       </div>
     </div>
