@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
 
 function NavTabs() {
   const currentPage = useLocation().pathname;
 
   return (
-    <section className="bg-[#011638] flex justify-between items-center  text-white">
+    <section className="bg-[#011638] flex justify-between items-center text-white">
       <div className="logo">
         <img className='max-h-[100px] max-w-[200px]' src="../src/assets/images/Logo.webp" alt="Tech-E" />
       </div>
@@ -39,7 +40,7 @@ function NavTabs() {
             to="/Checkout"
             className={`hover:text-gray-300 ${currentPage === '/Checkout' ? 'font-bold' : ''}`}
           >
-            Checkout
+            <FaShoppingCart /> {/* Include the FaShoppingCart icon */}
           </Link>
         </li>
       </ul>
@@ -48,4 +49,3 @@ function NavTabs() {
 }
 
 export default NavTabs;
-
