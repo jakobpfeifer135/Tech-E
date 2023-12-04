@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 
 import {  useNavigate } from 'react-router-dom';  // Import useHistory
 
+import { useMutation } from '@apollo/client';
+import { ADD_USER, LOGIN_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
 
 export default function Contact() {
   const history = useNavigate();  // Initialize history
@@ -9,12 +13,14 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     password: '',
     confirmPassword: '',
   });
 
   const [isExistingUser, setIsExistingUser] = useState(false);
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -25,7 +31,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(formData)
     if (isExistingUser) {
       // Simulate login (replace with actual API request)
       console.log('Login Submitted:', { email: formData.email, password: formData.password });
