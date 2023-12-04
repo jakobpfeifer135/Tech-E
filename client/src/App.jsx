@@ -5,7 +5,7 @@ import Nav from './components/Nav'
 function App() {
   return (
     <div>
-     
+
      <Nav />
      {/* <CartPage /> */}
       <main>
@@ -16,3 +16,4 @@ function App() {
 }
 
 export default App;
+

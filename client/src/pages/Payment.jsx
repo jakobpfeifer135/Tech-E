@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import PaymentForm from './PaymentForm'; // Assuming your PaymentForm component is in a separate file
 
+Modal.setAppElement('#root');
 
 export default function PaymentForm() {
     return (
@@ -36,20 +37,40 @@ export default function PaymentForm() {
             </div>
   
             <div>
-              <label htmlFor="creditCard" className="block text-sm font-medium leading-6 text-gray-900">
-                Credit Card Number
-              </label>
-              <div className="mt-2">
-                <input
-                  id="creditCard"
-                  name="creditCard"
-                  type="text"
-                  autoComplete="cc-number"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            <label htmlFor="creditCard" className="block text-sm font-medium leading-6 text-gray-900">
+              Credit Card Number
+            </label>
+            <div className="mt-2 relative">
+              <input
+                id="creditCard"
+                name="creditCard"
+                type="text"
+                autoComplete="cc-number"
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                {/* Visa icon */}
+                <img
+                  className="h-6 w-6"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Visa_2014_logo_detail.svg/1200px-Visa_2014_logo_detail.svg.png"
+                  alt="Visa"
+                />
+                {/* MasterCard icon */}
+                <img
+                  className="h-6 w-6 ml-2"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png"
+                  alt="MasterCard"
+                />
+                {/* Amex icon */}
+                <img
+                  className="h-6 w-6 ml-2"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/American_Express_logo.svg/1200px-American_Express_logo.svg.png"
+                  alt="Amex"
                 />
               </div>
             </div>
+          </div>
   
             <div className="grid grid-cols-2 gap-4">
               <div>

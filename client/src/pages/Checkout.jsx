@@ -41,8 +41,10 @@ const Checkout = () => {
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">Your Cart</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cartItems.map((product) => (
-            <div key={product.id} className="bg-gray-100 border-[#ecd398] border-4 p-6 rounded-lg shadow-md">
+
+          {cartItems.map((product, index) => (
+            <div key={index} className="bg-gray-100 border-[--Gold] border-4 p-6 rounded-lg shadow-md">
+
               <h3 className="text-xl font-bold mb-2 text-black">{product.name}</h3>
               <p className="text-black">{product.description}</p>
               <div className="flex justify-between items-center mt-4">
@@ -72,22 +74,11 @@ const Checkout = () => {
             </div>
           ))}
           {cartItems.length === 0 && (
-            <p className="text-xl text-gray-600">Your Shopping Cart is Empty</p>
-          )}
-        </div>
-        {/* Add a "Pay Now" button that opens the modal */}
-        <div className="mt-8">
-          {!showPaymentForm && (
-            <button
-              onClick={handleModalCheckout}
-              className="bg-indigo-600 text-white py-2 px-4 rounded-md"
-            >
-              Checkout!
-            </button>
+            <p className="text-xl text-gray-800">Your Shopping Cart is Empty</p>
           )}
         </div>
 
-        {/* Include the PaymentModal component */}
+        {/* Include the PaymentModal component directly */}
         {showModal && (
           <PaymentModal>
             <button onClick={handleCheckout} className="bg-indigo-600 text-white py-2 px-4 rounded-md">
