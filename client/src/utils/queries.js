@@ -1,31 +1,32 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PROFILES = gql`
-  query allProfiles {
-    profiles {
-      _id
-      name
-      skills
+export const QUERY_PRODUCT = gql`
+  query allProduct {
+    products {
+    _id
+    color
+    description
+    image
+    name
+    price
+    quantity
     }
   }
 `;
 
-export const QUERY_SINGLE_PROFILE = gql`
-  query singleProfile($profileId: ID!) {
-    profile(profileId: $profileId) {
-      _id
-      name
-      skills
+export const QUERY_SINGLE_PRODUCT = gql`
+  query singleProduct($productId: ID!) {
+    product(productId: $productId) {
+    _id
+    color
+    description
+    details
+    image
+    name
+    price
+    quantity
     }
   }
 `;
 
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      name
-      skills
-    }
-  }
-`;
+
