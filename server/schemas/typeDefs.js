@@ -24,12 +24,10 @@ const typeDefs = `
 
   type User {
     _id: ID
-    firstName: String
-    lastName: String
+    name: String
     email: String
-    address: String
-    orders: [Order]
     wishlist: [ID]
+    orders: [Order]
   }
 
   type Checkout {
@@ -62,9 +60,9 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(name: String!, email: String!, password: String!): Auth
     addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String, address: String): User
+    updateUser(name: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
     addWishlist(productId: String!): User
