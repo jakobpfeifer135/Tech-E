@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
 
+import {  useNavigate } from 'react-router-dom';  // Import useHistory
+
+import { useMutation } from '@apollo/client';
+import { ADD_USER, LOGIN_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
+
 export default function Contact() {
+  const history = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    password: '',
+    confirmPassword: '',
   });
+
+  const [isExistingUser, setIsExistingUser] = useState(false);
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -14,17 +29,71 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData)
+    if (isExistingUser) {
+      // Simulate login (replace with actual API request)
+      try {
+        const response = await login(formData.email, formData.password);
+        console.log('Login Response:', response);
+        // Redirect to the home page
+        history(); // Assuming '/' is the route for the home page
+      } catch (error) {
+        console.error('Login Error:', error.message);
+        // Handle login error
+      }
+    } else {
+      // Simulate sign up (replace with actual API request)
+      try {
+        const response = await signUp(formData);
+        console.log('Sign Up Response:', response);
 
-    // Simulate form submission (replace with actual API request)
-    console.log('Form Submitted:', formData);
+        if (response && response.userExists) {
+          // User already exists, show alert and redirect to login
+          window.alert('User already exists. Please log in.');
+          setIsExistingUser(true); // Switch to the login form
+        } else {
+          // Reset the form after successful sign-up
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            password: '',
+            confirmPassword: '',
+          });
+        }
+      } catch (error) {
+        console.error('Sign Up Error:', error.message);
+        // Handle sign-up error
+      }
+    }
+  };
 
-    // Reset the form after submission
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
+  // Modify the signUp function to check if the user already exists
+  const signUp = async (userData) => {
+    // Replace the following line with your actual sign-up API call
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simulate success
+        resolve({ message: 'User created successfully' });
+        // Simulate user already exists
+        // resolve({ userExists: true });
+        // Simulate error
+        // reject(new Error('Failed to create user'));
+      }, 1000);
+    });
+  };
+
+  const login = async (email, password) => {
+    // Replace the following line with your actual login API call
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simulate success
+        resolve({ message: 'Login successful' });
+        // Simulate error
+        // reject(new Error('Invalid credentials'));
+      }, 1000);
     });
   };
 
@@ -35,23 +104,30 @@ export default function Contact() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-              Name
-            </label>
-            <div className="mt-2">
-              <input
-                id="name"
-                name="name"
-                type="text"
-                autoComplete="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
+          {isExistingUser ? (
+            <p className="text-gray-800">Welcome back! Please log in.</p>
+          ) : (
+            <>
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+                  Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              {/* ... (other input fields) */}
+            </>
+          )}
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
@@ -71,30 +147,91 @@ export default function Contact() {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
-              Phone number
-            </label>
-            <div className="mt-2">
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                autoComplete="tel"
-                required
-                value={formData.phone}
-                onChange={handleChange}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+          {!isExistingUser && (
+            <>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                  Create Password
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              {!isExistingUser && (
+                <div>
+                  <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900">
+                    Confirm Password
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      type="password"
+                      autoComplete="new-password"
+                      required
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+
+          {isExistingUser && (
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                Password
+              </label>
+              <div className="text-sm">
+                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    Forgot password?
+                  </a>
+                </div>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* ... (other input fields) */}
 
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-[--Navy] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[--Gold] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Submit
+              {isExistingUser ? 'Log In' : 'Sign Up'}
+            </button>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              onClick={() => setIsExistingUser(!isExistingUser)}
+              className="flex w-full justify-center rounded-md bg-gray-400 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-800 shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+            >
+              {isExistingUser ? 'New User? Sign Up' : 'Existing User? Log In'}
             </button>
           </div>
         </form>

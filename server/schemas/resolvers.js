@@ -7,7 +7,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    products: async (parent, { category, name, brand, minPrice, maxPrice, sortMinPrice, sortMaxPrice }) => {
+    products: async (parent, { category, name, details, minPrice, maxPrice, sortMinPrice, sortMaxPrice }) => {
       const params = {};
       let sortParams = "name";
 
@@ -21,10 +21,8 @@ const resolvers = {
         };
       }
 
-      if (brand) {
-        params.brand = {
-          $regex: brand,
-        };
+      if (details) {
+        params.details = details;
       }
 
       if (minPrice) {

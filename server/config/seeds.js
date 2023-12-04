@@ -8,143 +8,179 @@ db.once('open', async () => {
   await cleanDB('User', 'users');
 
   const categories = await Category.insertMany([
-    { name: 'Food' },
-    { name: 'Household Supplies' },
-    { name: 'Electronics' },
-    { name: 'Books' },
-    { name: 'Toys' }
+    { name: 'Computers' },
+    { name: 'Monitors' },
+    { name: 'Cables' },
+    { name: 'Accessories'},
+    { name: 'Smart Products'},
   ]);
 
   console.log('categories seeded');
 
   const products = await Product.insertMany([
     {
-      name: 'Tin of Cookies',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
+      brand: 'QuantumByte',
+      color: 'Silver',
+      name: 'Laptop',
+      description: 'A laptop computer',
+      image: 'https://t4.ftcdn.net/jpg/01/67/28/69/360_F_167286969_jAEAfUY47qQ1SHqf1SyqSYypOsl0fWYF.jpg',
+      price: 329.99,
+      quantity: 100,
       category: categories[0]._id,
-      price: 2.99,
-      quantity: 500
     },
     {
-      name: 'Canned Coffee',
-      description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
+      brand: 'NovaFusion',
+      color: 'Black',
+      name: 'Desktop',
+      description: 'A desktop computer',
+      image: 'https://t3.ftcdn.net/jpg/01/56/55/24/240_F_156552441_xlhQ0Nr4kV1xrxzngI6IjpJ7aeZJQMfD.jpg',
+      price: 645.00,
+      quantity: 100,
       category: categories[0]._id,
-      price: 1.99,
-      quantity: 500
-    },
+    }, 
     {
-      name: 'Toilet Paper',
-      category: categories[1]._id,
-      description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      price: 7.99,
-      quantity: 20
-    },
-    {
-      name: 'Handmade Soap',
-      category: categories[1]._id,
-      description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      price: 3.99,
-      quantity: 50
-    },
-    {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
-      description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
-      price: 14.99,
-      quantity: 100
-    },
-    {
-      name: 'Camera',
-      category: categories[2]._id,
-      description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
-      image: 'camera.jpg',
-      price: 399.99,
-      quantity: 30
-    },
-    {
+      brand: 'VertexEdge',
+      color: 'Silver',
       name: 'Tablet',
+      description: 'A portable tablet',
+      image: 'https://t3.ftcdn.net/jpg/03/57/24/44/240_F_357244497_q8RsVSGpqL1sko6SQ5QWuT5naNK9qjNX.jpg',
+      price: 145.00,
+      quantity: 100,
+      category: categories[0]._id,
+    }, 
+    {
+      brand: 'QuantumByte',
+      color: 'Black',
+      name: 'Monitor',
+      description: 'A 24" monitor',
+      image: 'https://t3.ftcdn.net/jpg/03/25/48/12/240_F_325481234_IjwaylSbln8rEq2UNXjV9mb3GMWirDT0.jpg',
+      price: 29.99,
+      quantity: 100,
+      category: categories[1]._id,
+    },
+    {
+      brand: 'NovaFusion',
+      color: 'Black',
+      name: 'Monitor-2',
+      description: 'A 27" monitor',
+      image: 'https://t3.ftcdn.net/jpg/01/57/45/56/240_F_157455610_39QOu5333iNOG3fRq1WsYm1WyeGbLuEE.jpg',
+      price: 49.99,
+      quantity: 100,
+      category: categories[1]._id,
+    },
+    {
+      brand: 'VertexEdge',
+      color: 'Black',
+      name: 'Monitor-3',
+      description: 'A 32" monitor',
+      image: 'https://t3.ftcdn.net/jpg/01/42/43/98/240_F_142439866_7vElCBHte6puqMafeG0FcLv86Vd1SbQP.jpg',
+      price: 79.99,
+      quantity: 100,
+      category: categories[1]._id,
+    },
+    {
+      brand: 'QuantumByte',
+      color: 'Black',
+      name: 'HDMI',
+      description: 'An HDMI cable',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWT0yM9VnOHm2NJHn7U5vlPA6xq3_IOe82p0mQH-Lj3uuX9OcXTPmWVu36-FHaUPDMK0I&usqp=CAU',
+      price: 9.99,
+      quantity: 100,
       category: categories[2]._id,
-      description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      price: 199.99,
-      quantity: 30
     },
     {
-      name: 'Tales at Bedtime',
+      brand: 'NovaFusion',
+      color: 'Black',
+      name: 'DisplayPort',
+      description: 'A DisplayPort cable',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4KD_UyW0AzWXOBHN2ggm02l1gprcd6HoUcg&usqp=CAU',
+      price: 9.99,
+      quantity: 100,
+      category: categories[2]._id,
+    },
+    {
+      brand: 'VertexEdge',
+      color: 'White',
+      name: 'Ethernet ',
+      description: 'An ethernet cable',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGbs_d9wjlxeD-YIIEupTOFD6UgADr02EdsYS0KQlLAKIWuojgMQTETlshyK1gMRq57JM&usqp=CAU',
+      price: 9.99,
+      quantity: 100,
+      category: categories[2]._id,
+    },
+    {
+      brand: 'QuantumByte',
+      color: 'Black',
+      name: 'Keyboard',
+      description: 'A fancy mechanical keyboard',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxpExP3Vx8A60QC0mALEY5_FRdzvA-5Jxt9peyRjSyOtro59_FTjCQbH1KHUERh2qYlQ&usqp=CAU',
+      price: 39.99,
+      quantity: 100,
       category: categories[3]._id,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      price: 9.99,
-      quantity: 100
     },
     {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      price: 1.99,
-      quantity: 1000
+      brand: 'NovaFusion',
+      color: 'Silver',
+      name: 'Mouse',
+      description: 'The best and fastest mouse',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ29Vos_uaDYaSbrRrP5T9V3beIuBKmU3Us39T9iA_qKbkMAU-jt6tHtaJYoXKMfIiokCM&usqp=CAU',
+      price: 10.99,
+      quantity: 100,
+      category: categories[3]._id,
     },
     {
-      name: 'Set of Plastic Horses',
-      category: categories[4]._id,
-      description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      price: 2.99,
-      quantity: 1000
+      brand: 'VertexEdge',
+      color: 'Black',
+      name: 'Headphones',
+      description: 'Noise canceling headphones',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThtEesNie7X_Y9XM5fH6JZnPqfSZBTngMciw&usqp=CAU',
+      price: 59.99,
+      quantity: 100,
+      category: categories[3]._id,
     },
     {
-      name: 'Teddy Bear',
+      brand: 'QuantumByte',
+      color: 'Black',
+      name: 'SmartWatch',
+      description: 'A watch for everything',
+      image: 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FI%2F71OhO3TfKhL._AC_UF894%2C1000_QL80_.jpg&tbnid=Nw29fgxe2gFdLM&vet=12ahUKEwip0K3UjvaCAxXQHNAFHaLCD5gQMygHegUIARDIAg..i&imgrefurl=https%3A%2F%2Fwww.amazon.com%2FPopglory-Smartwatch-Pressure-Monitor-Fitness%2Fdp%2FB08DXQSVDC&docid=_jZYkzXCzK9eyM&w=894&h=998&q=smart%20watch&hl=en&ved=2ahUKEwip0K3UjvaCAxXQHNAFHaLCD5gQMygHegUIARDIAg',
+      price: 159.99,
+      quantity: 100,
       category: categories[4]._id,
-      description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      price: 7.99,
-      quantity: 100
     },
     {
-      name: 'Alphabet Blocks',
+      brand: 'NovaFusion',
+      color: 'Silver',
+      name: 'SmartAssistant',
+      description: 'Tell it what to do',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9WuWhrH-hxwsA2V4OGiZ5I9QR8AhTqAvK6A&usqp=CAU',
+      price: 159.99,
+      quantity: 100,
       category: categories[4]._id,
-      description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      price: 9.99,
-      quantity: 600
-    }
+    },
+    {
+      brand: 'VertexEdge',
+      color: 'Black',
+      name: 'VR Headset',
+      description: 'Escape reality',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-hd7T28l70fv6Ygid5Ib8ddraRvOTlg2MYg&usqp=CAU',
+      price: 1259.99,
+      quantity: 100,
+      category: categories[4]._id,
+    },
   ]);
 
   console.log('products seeded');
 
   await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
-    email: 'pamela@testmail.com',
-    password: 'password12345',
-    orders: [
-      {
-        products: [products[0]._id, products[0]._id, products[1]._id]
-      }
-    ]
+    name: 'Test',
+    email: 'test@email.com',
+    password: 'password12345'
   });
 
   await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
-    email: 'eholt@testmail.com',
+    name: 'Dale Cooper',
+    email: 'dale@fbi.gov',
     password: 'password12345'
   });
 
