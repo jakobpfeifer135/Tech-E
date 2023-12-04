@@ -1,23 +1,13 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_PRODUCT = gql`
-  query allProduct {
-    products {
+ query allProduct($name: String, $minPrice: Float, $maxPrice: Float, $sortMinPrice: Boolean, $sortMaxPrice: Boolean, $category: ID) {
+  products(name: $name, minPrice: $minPrice, maxPrice: $maxPrice, sortMinPrice: $sortMinPrice, sortMaxPrice: $sortMaxPrice, category: $category) {
     _id
-    color
-    description
-    image
-    name
-    price
-    quantity
+    category {
+      _id
+      name
     }
-  }
-`;
-
-export const QUERY_SINGLE_PRODUCT = gql`
-  query singleProduct($productId: ID!) {
-    product(productId: $productId) {
-    _id
     color
     description
     details
@@ -25,8 +15,28 @@ export const QUERY_SINGLE_PRODUCT = gql`
     name
     price
     quantity
-    }
   }
+}
 `;
+
+export const QUERY_SINGLE_PRODUCT = gql`
+  query singleProduct($id: ID!) {
+  product(_id: $id) {
+    _id
+    category {
+      _id
+      name
+    }
+    color
+    description
+    details
+    image
+    name
+    price
+    quantity
+  }
+}
+`;
+
 
 
