@@ -35,45 +35,45 @@ export default function Contact() {
 
     if (isExistingUser) {
       //if they are an existing user, call the login mutation
-      try {
-        const { data } = await login({
-          variables: { ...formData },
-        });
+    //   try {
+    //     const { data } = await login({
+    //       variables: { ...formData },
+    //     });
   
-        Auth.login(data.login.token);
+    //     Auth.login(data.login.token);
         
-        console.log('Login Submitted:', { email: formData.email, password: formData.password });
-        setFormData({
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        });
-        // Redirect to the home page
-        history.push('/');  // Assuming '/' is the route for the home page
-      } catch (err) {
-        console.error(err);
-      }
+    //     console.log('Login Submitted:', { email: formData.email, password: formData.password });
+    //     setFormData({
+    //       name: '',
+    //       email: '',
+    //       password: '',
+    //       confirmPassword: '',
+    //     });
+    //     // Redirect to the home page
+    //     history.push('/');  // Assuming '/' is the route for the home page
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
       
-    } else {
-      try {
-        const { data } = await addUser({
-          variables: { ...formData },
-        });
+    // } else {
+    //   try {
+    //     const { data } = await addUser({
+    //       variables: { ...formData },
+    //     });
   
-        Auth.login(data.addUser.token);
+    //     Auth.login(data.addUser.token);
         
-        console.log('Sign Up Submitted:', formData);
-        // Reset the form after submission
-        setFormData({
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        });
+    //     console.log('Sign Up Submitted:', formData);
+    //     // Reset the form after submission
+    //     setFormData({
+    //       name: '',
+    //       email: '',
+    //       password: '',
+    //       confirmPassword: '',
+    //     });
 
-      } catch (err) {
-        console.error(err);
+    //   } catch (err) {
+    //     console.error(err);
 
 // MIKEL'S CODE STARTS HERE
       // Simulate login (replace with actual API request)
