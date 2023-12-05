@@ -3,45 +3,44 @@ import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
   const { id, name, description, imageUrl, colorOptions, price } = product;
-  const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
-
+  const [selectedColor, setSelectedColor] = useState(colorOptions[3]);
   const handleColorSelection = (color) => {
     setSelectedColor(color);
   };
-
   return (
-    <div key={id} className="bg-gray-100 border-[--Gold] border-4 p-6 rounded-lg shadow-md">
-      <div className="mb-4">
+    <div key={id} className="bg-gray-300 p-6 rounded-lg shadow-md border-4 border-black/30">
+      <div className="mb-4" style={{ marginTop: '-50px' }}>
         <img
-          className="w-full h-32 object-cover object-center rounded-md"
+          className="border-l-8 border-r-8 border-b-8 border-gray-100 w-full h-36 object-cover object-center rounded-xl"
           src={imageUrl[colorOptions.indexOf(selectedColor)]}
           alt={`Product ${id}`}
         />
       </div>
-      <h3 className="text-xl font-bold mb-2 text-black">{name}</h3>
-      <p className="text-black">{description}</p>
-      <p className="text-black font-semibold">Price: ${price}</p>
-      <div className="mt-4 flex space-x-2">
+      <h3 className="text-lg text-center font-bold mb-2 text-black">{name}</h3>
+      <p className="text-black pb-3">{description}</p>
+      <p className="text-black text-center font-semibold">Price: ${price}</p>
+      <div className="mt-4 flex p-2 justify-center items-center space-x-2"> {/* Added space-x-2 for horizontal spacing */}
         {colorOptions.map((color) => (
-          <button
+          <div
             key={color}
             onClick={() => handleColorSelection(color)}
-            className={`w-6 h-6 rounded-full border border-gray-500 ${selectedColor === color ? 'border-black' : ''}`}
+            className={`w-8 h-8 rounded-full border border-gray-500/60 cursor-pointer ${selectedColor === color ? 'border-black' : ''}`}
             style={{ backgroundColor: color }}
-          ></button>
+          ></div>
         ))}
       </div>
       <Link
         to={`/product/${id}`} // Redirect to the product details page
-        className="block mt-4 bg-black text-white px-4 py-2 rounded-md hover:bg-[--Gold] hover:text-black focus:outline-none focus:ring focus:border-indigo-300 font-serif"
+        className="block mt-4 bg-black text-white px-4 py-2 rounded-md hover:bg-[--Gold] hover:text-black font-serif text-center"
       >
-        View Details
+       Add To Cart
       </Link>
     </div>
   );
 };
-
 export default ProductCard;
+
+
 
 
 

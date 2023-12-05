@@ -26,7 +26,7 @@ const typeDefs = `
     _id: ID
     name: String
     email: String
-    wishlist: [ID]
+    wishlist: [Product]
     orders: [Order]
   }
 
@@ -52,7 +52,7 @@ const typeDefs = `
 
   type Query {
     categories: [Category]
-    products(category: ID, name: String, details: String, minPrice: Float, maxPrice: Float, sortMinPrice: Float, sortMaxPrice: Float): [Product]
+    products(category: ID, name: String, details: String, minPrice: Float, maxPrice: Float, sortMinPrice: Boolean, sortMaxPrice: Boolean): [Product]
     product(_id: ID!): Product
     user: User
     order(_id: ID!): Order
