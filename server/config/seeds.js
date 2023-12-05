@@ -19,7 +19,7 @@ db.once('open', async () => {
 
   const products = await Product.insertMany([
     {
-      brand: 'QuantumByte',
+      details: 'QuantumByte',
       color: 'Silver',
       name: 'Laptop',
       description: 'A laptop computer',
@@ -29,7 +29,7 @@ db.once('open', async () => {
       category: categories[0]._id,
     },
     {
-      brand: 'NovaFusion',
+      details: 'NovaFusion',
       color: 'Black',
       name: 'Desktop',
       description: 'A desktop computer',
@@ -39,7 +39,7 @@ db.once('open', async () => {
       category: categories[0]._id,
     }, 
     {
-      brand: 'VertexEdge',
+      details: 'VertexEdge',
       color: 'Silver',
       name: 'Tablet',
       description: 'A portable tablet',
@@ -49,7 +49,7 @@ db.once('open', async () => {
       category: categories[0]._id,
     }, 
     {
-      brand: 'QuantumByte',
+      details: 'QuantumByte',
       color: 'Black',
       name: 'Monitor',
       description: 'A 24" monitor',
@@ -59,7 +59,7 @@ db.once('open', async () => {
       category: categories[1]._id,
     },
     {
-      brand: 'NovaFusion',
+      details: 'NovaFusion',
       color: 'Black',
       name: 'Monitor-2',
       description: 'A 27" monitor',
@@ -69,7 +69,7 @@ db.once('open', async () => {
       category: categories[1]._id,
     },
     {
-      brand: 'VertexEdge',
+      details: 'VertexEdge',
       color: 'Black',
       name: 'Monitor-3',
       description: 'A 32" monitor',
@@ -79,7 +79,7 @@ db.once('open', async () => {
       category: categories[1]._id,
     },
     {
-      brand: 'QuantumByte',
+      details: 'QuantumByte',
       color: 'Black',
       name: 'HDMI',
       description: 'An HDMI cable',
@@ -89,7 +89,7 @@ db.once('open', async () => {
       category: categories[2]._id,
     },
     {
-      brand: 'NovaFusion',
+      details: 'NovaFusion',
       color: 'Black',
       name: 'DisplayPort',
       description: 'A DisplayPort cable',
@@ -99,7 +99,7 @@ db.once('open', async () => {
       category: categories[2]._id,
     },
     {
-      brand: 'VertexEdge',
+      details: 'VertexEdge',
       color: 'White',
       name: 'Ethernet ',
       description: 'An ethernet cable',
@@ -109,7 +109,7 @@ db.once('open', async () => {
       category: categories[2]._id,
     },
     {
-      brand: 'QuantumByte',
+      details: 'QuantumByte',
       color: 'Black',
       name: 'Keyboard',
       description: 'A fancy mechanical keyboard',
@@ -119,7 +119,7 @@ db.once('open', async () => {
       category: categories[3]._id,
     },
     {
-      brand: 'NovaFusion',
+      details: 'NovaFusion',
       color: 'Silver',
       name: 'Mouse',
       description: 'The best and fastest mouse',
@@ -129,7 +129,7 @@ db.once('open', async () => {
       category: categories[3]._id,
     },
     {
-      brand: 'VertexEdge',
+      details: 'VertexEdge',
       color: 'Black',
       name: 'Headphones',
       description: 'Noise canceling headphones',
@@ -139,7 +139,7 @@ db.once('open', async () => {
       category: categories[3]._id,
     },
     {
-      brand: 'QuantumByte',
+      details: 'QuantumByte',
       color: 'Black',
       name: 'SmartWatch',
       description: 'A watch for everything',
@@ -149,7 +149,7 @@ db.once('open', async () => {
       category: categories[4]._id,
     },
     {
-      brand: 'NovaFusion',
+      details: 'NovaFusion',
       color: 'Silver',
       name: 'SmartAssistant',
       description: 'Tell it what to do',
@@ -159,7 +159,7 @@ db.once('open', async () => {
       category: categories[4]._id,
     },
     {
-      brand: 'VertexEdge',
+      details: 'VertexEdge',
       color: 'Black',
       name: 'VR Headset',
       description: 'Escape reality',
