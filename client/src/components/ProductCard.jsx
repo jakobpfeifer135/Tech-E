@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 const ProductCard = ({ product }) => {
   const { id, name, description, imageUrl, colorOptions, price } = product;
   const [selectedColor, setSelectedColor] = useState(colorOptions[3]);
-
   const handleColorSelection = (color) => {
     setSelectedColor(color);
   };
-
   return (
     <div key={id} className="bg-gray-300 p-6 rounded-lg shadow-md border-4 border-black/30">
       <div className="mb-4" style={{ marginTop: '-50px' }}>
@@ -40,7 +38,6 @@ const ProductCard = ({ product }) => {
     </div>
   );
 };
-
 export default ProductCard;
 
 
