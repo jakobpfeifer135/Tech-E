@@ -26,7 +26,7 @@ const typeDefs = `
     _id: ID
     name: String
     email: String
-    wishlist: [ID]
+    wishlist: [Product]
     orders: [Order]
   }
 
