@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-
 import {  useNavigate } from 'react-router-dom';  // Import useHistory
-
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER, LOGIN_USER } from '../utils/mutations';
-
 import Auth from '../utils/auth';
 
 export default function Contact() {
@@ -107,7 +104,7 @@ export default function Contact() {
                   />
                 </div>
               </div>
-              {/* ... (other input fields) */}
+        
             </>
           )}
 
@@ -195,8 +192,6 @@ export default function Contact() {
               </div>
             </div>
           )}
-
-          {/* ... (other input fields) */}
 
           <div>
             <button
