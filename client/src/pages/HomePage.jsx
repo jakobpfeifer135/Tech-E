@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { FaInstagram, FaFacebook, FaGithub, FaLinkedin} from 'react-icons/fa';
 import { FaTruckFast} from 'react-icons/fa6';
 import { AiFillClockCircle, AiFillDollarCircle, AiFillPhone } from "react-icons/ai";
