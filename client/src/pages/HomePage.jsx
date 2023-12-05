@@ -1,5 +1,7 @@
 import React from 'react';
-import { FaInstagram, FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaGithub, FaLinkedin} from 'react-icons/fa';
+import { FaTruckFast} from 'react-icons/fa6';
+import { AiFillClockCircle, AiFillDollarCircle, AiFillPhone } from "react-icons/ai";
 import Slider from 'react-slick';
 import ProductCard from '../components/ProductCard';
 import 'slick-carousel/slick/slick.css';
@@ -7,6 +9,15 @@ import 'slick-carousel/slick/slick-theme.css';
 // import {useQuery} from "@apollo/client";
 
 const Main = () => {
+
+  const icons = [<AiFillClockCircle />, <AiFillDollarCircle />, <AiFillPhone />, <FaTruckFast />];
+
+  const descriptions = [
+    "Around the clock updates on new tech",
+    "Great Affordable Pricing",
+    "24/7 Customer Support",
+    "Fast and secure Shipping",
+  ];
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -67,6 +78,7 @@ const Main = () => {
 
 
 
+
       <section className="bg-black">
         <div className="container mx-auto flex items-center justify-center h-[320px] relative">
           <Slider {...sliderSettings} className="w-full max-w-[900px]">
@@ -111,7 +123,7 @@ const Main = () => {
     {/* Left section with image */}
     <div className="lg:w-1/2 lg:pr-8 mb-8">
       <img
-        className="w-full h-auto object-cover"
+        className="w-full h-auto object-cover rounded-xl"
         src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  
         alt="Section Image"
       />
@@ -120,25 +132,22 @@ const Main = () => {
    
     <div className="lg:w-1/2 lg:pl-8">
       <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
-      <p className="text-gray-800 mb-4">
+      <p className="text-gray-800 mb-4 font-semibold">
       Choose us for unmatched quality, reliability, and a seamless experience.
       </p>
 
       
-      <div className="bg-white p-4 rounded-md mb-4">
-        <p className="text-lg font-semibold mb-2">Larger Text Box Content</p>
-        <p className="text-gray-700">Additional details or content for the larger text box.</p>
-      </div>
+    
 
       
-      <div className="flex flex-col lg:flex-row space-y-4 lg:space-x-4">
-        {[1, 2, 3, 4].map((index) => (
-          <div key={index} className="bg-white p-4 rounded-md flex-1">
-            <p className="text-lg font-semibold mb-2">Box {index}</p>
-            <p className="text-gray-700">Content for Box {index}</p>
-          </div>
-        ))}
-      </div>
+      <div className="flex flex-wrap ml-6">
+  {[1, 2, 3, 4].map((index) => (
+    <div key={index} className="bg-white p-4 mb-5 mr-5 rounded-md h-40 w-48 flex flex-col items-center justify-center shadow-2xl">
+      {icons[index - 1]}
+      <p className="text-gray-700 mt-2 text-center">{descriptions[index - 1]}</p>
+    </div>
+  ))}
+</div>
     </div>
   </div>
 </section>
