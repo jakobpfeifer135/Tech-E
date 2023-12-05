@@ -1,40 +1,32 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
+// import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+// import { QUERY_SINGLE_PRODUCT } from '../utils/queries';
+import { QUERY_PRODUCT } from '../utils/queries';
 
 const Products = () => {
-  // You can manage your product data or fetch it from an API here
-  const products = [
-    // Example product data
-    {
-      id: 1,
-      name: 'Product 1',
-      description: 'Description of Product 1.',
-      imageUrl: ['url1_1', 'url1_2', 'url1_3'], // Array of image URLs for different color options
-      colorOptions: ['Red', 'Green', 'Blue'],
-      price: 29.99,
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      description: 'Description of Product 2.',
-      imageUrl: ['url2_1', 'url2_2', 'url2_3'],
-      colorOptions: ['Black', 'White', 'Gray'],
-      price: 39.99,
-    },
-    // Add more products as needed
-  ];
+  // Sample product data
+  const { loading, data } = useQuery(QUERY_PRODUCT);
+  const products = data?.products || [];
 
   return (
-    <div className="container mx-auto py-8">
-      <h2 className="text-3xl font-bold mb-8">Products</h2>
-      <div className="flex flex-wrap -mx-4">
-        {products.map((product) => (
-          <div key={product.id} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-8">
-            <ProductCard product={product} />
-          </div>
-        ))}
+    <main>
+      <div className="flex-row justify-center">
+        <div className="col-12 col-md-8 mb-3">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            // Use parentheses () for mapping
+            products.map((product) => (
+              
+                <ProductCard product={product} key={product._id} />
+              
+            ))
+          )}
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

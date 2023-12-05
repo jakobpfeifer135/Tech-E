@@ -71,7 +71,7 @@ export default function Contact() {
 
       } catch (err) {
         console.error(err);
-    };
+    }
   }
 }
 
