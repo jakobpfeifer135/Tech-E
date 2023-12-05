@@ -8,18 +8,18 @@ const ProductCard = ({ product }) => {
     setSelectedColor(color);
   };
   return (
-    <div key={id} className="bg-gray-300 p-6 rounded-lg shadow-md border-4 border-black/30">
+    <div key={id} className="bg-gray-300 p-6 rounded-lg shadow-md border-4 border-black/20 flex flex-col h-full">
       <div className="mb-4" style={{ marginTop: '-50px' }}>
         <img
-          className="border-l-8 border-r-8 border-b-8 border-gray-100 w-full h-36 object-cover object-center rounded-xl"
+          className="border-4 border-[--Navy] w-full h-36 object-cover object-center rounded-xl"
           src={imageUrl[colorOptions.indexOf(selectedColor)]}
           alt={`Product ${id}`}
         />
       </div>
-      <h3 className="text-lg text-center font-bold mb-2 text-black">{name}</h3>
-      <p className="text-black pb-3">{description}</p>
+      <h3 className="text-lg text-center font-bold mb-2 text-black h-16 overflow-hidden">{name}</h3>
+      <p className="text-black pb-3 h-5 overflow-hidden">{description}</p>
       <p className="text-black text-center font-semibold">Price: ${price}</p>
-      <div className="mt-4 flex p-2 justify-center items-center space-x-2"> {/* Added space-x-2 for horizontal spacing */}
+      <div className="mt-4 flex p-2 bg-white/70 rounded-lg justify-center items-center space-x-2"> {/* Added space-x-2 for horizontal spacing */}
         {colorOptions.map((color) => (
           <div
             key={color}
