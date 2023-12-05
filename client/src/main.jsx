@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Checkout from './pages/Checkout.jsx';
 import HomePage from './pages/HomePage.jsx';
 import Login from './pages/Login.jsx';
+import Products from './pages/Products.jsx'
 
 
 // Define the accessible routes, and which components respond to which URL
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: '/Login',
         element: <Login />
+      },
+      {
+        path: '/Products',
+        element: <Products />
       },
  
     ],
