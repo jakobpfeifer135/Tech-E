@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {  useNavigate } from 'react-router-dom';  // Import useHistory
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER, LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
@@ -19,8 +19,8 @@ export default function Contact() {
 
   const [isExistingUser, setIsExistingUser] = useState(false);
 
-  const [addUser, { error, data }] = useMutation(ADD_USER);
-  
+  const [addUser, { error: signupError, data: signupData }] = useMutation(ADD_USER);
+  const [loginUser, { error: loginError, data: loginData }] = useMutation(LOGIN_USER)
 
   const handleChange = (e) => {
     setFormData({
@@ -32,70 +32,52 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData)
+
     if (isExistingUser) {
-      // Simulate login (replace with actual API request)
+      // if they are an existing user, call the login mutation
       try {
-        const response = await login(formData.email, formData.password);
-        console.log('Login Response:', response);
+        const { data } = await loginUser({
+          variables: { ...formData },
+        });
+  
+        Auth.login(data.login.token);
+        
+        console.log('Login Submitted:', { email: formData.email, password: formData.password });
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
         // Redirect to the home page
-        history(); // Assuming '/' is the route for the home page
-      } catch (error) {
-        console.error('Login Error:', error.message);
-        // Handle login error
+        history.push('/');  // Assuming '/' is the route for the home page
+      } catch (err) {
+        console.error(err);
       }
+      
     } else {
-      // Simulate sign up (replace with actual API request)
       try {
-        const response = await signUp(formData);
-        console.log('Sign Up Response:', response);
+        const { data } = await addUser({
+          variables: { ...formData },
+        });
+  
+        Auth.login(data.addUser.token);
+        
+        console.log('Sign Up Submitted:', formData);
+        // Reset the form after submission
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
 
-        if (response && response.userExists) {
-          // User already exists, show alert and redirect to login
-          window.alert('User already exists. Please log in.');
-          setIsExistingUser(true); // Switch to the login form
-        } else {
-          // Reset the form after successful sign-up
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            password: '',
-            confirmPassword: '',
-          });
-        }
-      } catch (error) {
-        console.error('Sign Up Error:', error.message);
-        // Handle sign-up error
-      }
-    }
-  };
+      } catch (err) {
+        console.error(err);
+    };
+  }
+}
 
-  // Modify the signUp function to check if the user already exists
-  const signUp = async (userData) => {
-    // Replace the following line with your actual sign-up API call
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Simulate success
-        resolve({ message: 'User created successfully' });
-        // Simulate user already exists
-        // resolve({ userExists: true });
-        // Simulate error
-        // reject(new Error('Failed to create user'));
-      }, 1000);
-    });
-  };
-
-  const login = async (email, password) => {
-    // Replace the following line with your actual login API call
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Simulate success
-        resolve({ message: 'Login successful' });
-        // Simulate error
-        // reject(new Error('Invalid credentials'));
-      }, 1000);
-    });
-  };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -167,7 +149,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {!isExistingUser && (
+              {/* {!isExistingUser && ( */}
                 <div>
                   <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900">
                     Confirm Password
@@ -185,7 +167,7 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-              )}
+              {/* )} */}
             </>
           )}
 
