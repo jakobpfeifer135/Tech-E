@@ -8,11 +8,16 @@ function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
   const {
+    color,
+    description,
+    details,
     image,
     name,
-    _id,
     price,
-    quantity
+    quantity,
+    _id,
+    // category
+    
   } = item;
 
   const { cart } = state
@@ -38,20 +43,49 @@ function ProductItem(item) {
     }
   }
 
+  // return (
+  //   <div className="card px-1 py-1">
+  //     <Link to={`/products/${_id}`}>
+  //       <img
+  //         alt={name}
+  //         src={`/images/${image}`}
+  //       />
+  //       <p>{name}</p>
+  //     </Link>
+  //     <div>
+  //       <div>{quantity} {pluralize("item", quantity)} in stock</div>
+  //       <span>${price}</span>
+  //     </div>
+  //     <button onClick={addToCart}>Add to cart</button>
+  //   </div>
+  // );
   return (
-    <div className="card px-1 py-1">
-      <Link to={`/products/${_id}`}>
-        <img
-          alt={name}
-          src={`/images/${image}`}
-        />
-        <p>{name}</p>
-      </Link>
-      <div>
+    <div>
+      <h3>{name}</h3>
+      <div key={_id} className="card mb-3">
+        <h4 className="card-header bg-primary text-light p-2 m-0">
+          {description} <br />
+          <span style={{ fontSize: '1rem' }}>
+             {color}
+          </span>
+        </h4>
+        
+        <div className="card-body bg-light p-2">
+          
+
+          <img src={image} alt="" />
+        </div>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
+        <Link
+          className="btn btn-primary btn-block btn-squared"
+          to={`/products/${_id}`}
+        >
+         
+        </Link>
         <span>${price}</span>
+        <p>{details}</p>
+        <button onClick={addToCart}>Add to cart</button>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
     </div>
   );
 }

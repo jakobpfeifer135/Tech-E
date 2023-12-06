@@ -152,7 +152,7 @@ db.once('open', async () => {
       color: 'Black',
       name: 'SmartWatch',
       description: 'A watch for everything',
-      image: 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FI%2F71OhO3TfKhL._AC_UF894%2C1000_QL80_.jpg&tbnid=Nw29fgxe2gFdLM&vet=12ahUKEwip0K3UjvaCAxXQHNAFHaLCD5gQMygHegUIARDIAg..i&imgrefurl=https%3A%2F%2Fwww.amazon.com%2FPopglory-Smartwatch-Pressure-Monitor-Fitness%2Fdp%2FB08DXQSVDC&docid=_jZYkzXCzK9eyM&w=894&h=998&q=smart%20watch&hl=en&ved=2ahUKEwip0K3UjvaCAxXQHNAFHaLCD5gQMygHegUIARDIAg',
+      image: '../src/assets/images/WhiteAirpods.webp',
       price: 159.99,
       quantity: 100,
       category: categories[4]._id,
