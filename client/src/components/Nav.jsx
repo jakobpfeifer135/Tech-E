@@ -2,9 +2,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import Logo from '../assets/images/Logo.webp'
+import { useStoreContext } from '../utils/GlobalState';
+import { TOGGLE_CART } from '../utils/actions';
 function NavTabs() {
   const currentPage = useLocation().pathname;
-
+  const [state, dispatch] = useStoreContext();
   return (
 
     <section className="bg-[#011638] flex justify-between items-center text-white border-b-4">
@@ -41,11 +43,14 @@ function NavTabs() {
         </li>
         <li className="nav-item mt-1">
           <Link
-            to="/Checkout"
+           
             className={`hover:text-gray-300 ${currentPage === '/Checkout' ? 'font-bold' : ''} flex items-center`}
           >
 
-            <FaShoppingCart className="text-2xl" /> {/* Adjust the size with text-2xl or other utility classes */}
+            <FaShoppingCart  onClick={() => {
+              console.log('you clicked me');
+              dispatch({ type: TOGGLE_CART });
+            }} className="text-2xl" /> {/* Adjust the size with text-2xl or other utility classes */}
 
           </Link>
         </li>

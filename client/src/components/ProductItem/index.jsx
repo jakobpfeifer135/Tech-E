@@ -43,6 +43,49 @@ function ProductItem(item) {
     }
   }
 
+
+  return (
+    <div>
+      <div key={_id} className="bg-gray-300 p-6 rounded-lg shadow-md border-4 border-black/20 flex flex-col h-full justify-center">
+        <h4 className="text-black pb-3 h-5 overflow-hidden">
+          {description} <br />
+          <span style={{ fontSize: '1rem' }}>
+            {color}
+          </span>
+        </h4>
+  
+        <div className="mb-4" style={{ marginTop: '-80px' }}>
+          <img
+            className="border-4 border-[--Navy] w-full h-36 object-cover object-center rounded-xl"
+            src={image}
+            alt={`Product ${_id}`}
+          />
+        </div>
+  
+        <h3>{name}</h3>
+        <div>{quantity} {pluralize("item", quantity)} in stock</div>
+        <Link
+          className="btn btn-primary btn-block btn-squared"
+          to={`/products/${_id}`}
+        >
+          View Details
+        </Link>
+  
+        <span className="text-black">${price}</span>
+        <p className="text-black">{details}</p>
+  
+        <button onClick={addToCart} className="btn btn-primary btn-block btn-squared bg-black text-white rounded-2xl max-w-[150px] min-w-[130px] mx-auto mt-5">
+          Add to cart
+        </button>
+      </div>
+    </div>
+  );
+  
+}
+
+export default ProductItem;
+
+
   // return (
   //   <div className="card px-1 py-1">
   //     <Link to={`/products/${_id}`}>
@@ -59,35 +102,3 @@ function ProductItem(item) {
   //     <button onClick={addToCart}>Add to cart</button>
   //   </div>
   // );
-  return (
-    <div>
-      <h3>{name}</h3>
-      <div key={_id} className="card mb-3">
-        <h4 className="card-header bg-primary text-light p-2 m-0">
-          {description} <br />
-          <span style={{ fontSize: '1rem' }}>
-             {color}
-          </span>
-        </h4>
-        
-        <div className="card-body bg-light p-2">
-          
-
-          <img src={image} alt="" />
-        </div>
-        <div>{quantity} {pluralize("item", quantity)} in stock</div>
-        <Link
-          className="btn btn-primary btn-block btn-squared"
-          to={`/products/${_id}`}
-        >
-         
-        </Link>
-        <span>${price}</span>
-        <p>{details}</p>
-        <button onClick={addToCart}>Add to cart</button>
-      </div>
-    </div>
-  );
-}
-
-export default ProductItem;

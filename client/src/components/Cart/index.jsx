@@ -7,8 +7,8 @@ import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
-import './style.css';
-
+import '../../index.css';
+import { FaShoppingCart } from 'react-icons/fa';
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -54,7 +54,7 @@ if (error) { console.log(error);}
   // When the submit checkout method is invoked, loop through each item in the cart
   // Add each item id to the productIds array and then invoke the getCheckout query passing an object containing the id for all our products
   function submitCheckout() {
-console.log("hello world");
+
     getCheckout({
       variables: { 
         products: [...state.cart],
@@ -64,13 +64,16 @@ console.log("hello world");
 
   if (!state.cartOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash" >
-          🛒
-        </span>
+      <div className="cart-closed" 
+      // onClick={toggleCart}
+      >
+        {/* <FaShoppingCart className="text-2xl text-black" role='img' /> */}
       </div>
     );
   }
+
+   {/* Adjust the size with text-2xl or other utility classes */}
+
 
   return (
     <div className="cart">
