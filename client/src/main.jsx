@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import Main from './pages/HomePage.jsx'
 import App from './App.jsx';
-import Home from './pages/Home';
+import ProductsPage from './pages/Home.jsx';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
@@ -19,7 +19,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true, 
-        element: <Home />
+        element: <Main />
+      },
+      {
+        path: '/Products',
+        element: <ProductsPage />
       }, {
         path: '/login',
         element: <Login />
@@ -36,6 +40,7 @@ const router = createBrowserRouter([
         path: '/products/:id',
         element: <Detail />
       }
+      
     ]
   }
 ]);
