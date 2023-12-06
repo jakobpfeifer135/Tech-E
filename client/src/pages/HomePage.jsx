@@ -72,24 +72,22 @@ const Main = () => {
 
           {/* Right section for product cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:col-span-3">
-            {/* Advanced Product Cards */}
-            {products.map((product) => (
-              <ProductItem 
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
-              details={product.details}
-              description={product.description}
-              color={product.color}
-            />
+  {/* Display only the first 3 products */}
+  {products.slice(0, 3).map((product) => (
+    <ProductItem 
+      key={product._id}
+      _id={product._id}
+      image={product.image}
+      name={product.name}
+      price={product.price}
+      quantity={product.quantity}
+      details={product.details}
+      description={product.description}
+      color={product.color}
+    />
+  ))}
+</div>
 
-            ))}
-
-          
-          </div>
         </div>
       </section>
 
