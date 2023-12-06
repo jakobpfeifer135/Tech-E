@@ -3,7 +3,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './pages/HomePage.jsx'
 import App from './App.jsx';
-import ProductsPage from './pages/Home.jsx';
+import ProductsPage from './pages/ProductsPage.jsx';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Main />
       },
       {
-        path: '/Products',
+        path: '/ProductsPage',
         element: <ProductsPage />
       }, {
         path: '/login',

@@ -56,6 +56,9 @@ function ProductList() {
               name={product.name}
               price={product.price}
               quantity={product.quantity}
+              details={product.details}
+              description={product.description}
+              color={product.color}
             />
           ))}
         </div>

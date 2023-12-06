@@ -1,15 +1,17 @@
-// import React from 'react';
+
 import { FaInstagram, FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaTruckFast } from 'react-icons/fa6';
 import { AiFillClockCircle, AiFillDollarCircle, AiFillPhone } from "react-icons/ai";
 import Slider from 'react-slick';
-import ProductCard from '../components/ProductCard';
+// import ProductCard from '../components/ProductCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import {useQuery} from "@apollo/client";
-import ProductItem from '../components/ProductItem';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_PRODUCTS } from '../utils/queries';
+
+import Cart from "../components/Cart";
+import ProductItem from '../components/ProductItem';
+
 const Main = () => {
 
   const icons = [<AiFillClockCircle />, <AiFillDollarCircle />, <AiFillPhone />, <FaTruckFast />];
@@ -29,8 +31,6 @@ const Main = () => {
     autoplay: true,
     autoplaySpeed: 2500,
   };
-
-
 
 
   const { loading, data } = useQuery(QUERY_ALL_PRODUCTS);
@@ -72,10 +72,21 @@ const Main = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:col-span-3">
             {/* Advanced Product Cards */}
             {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
+              <ProductItem 
+              key={product._id}
+              _id={product._id}
+              image={product.image}
+              name={product.name}
+              price={product.price}
+              quantity={product.quantity}
+              details={product.details}
+              description={product.description}
+              color={product.color}
+            />
 
             ))}
-         
+
+          <Cart />
           </div>
         </div>
       </section>
