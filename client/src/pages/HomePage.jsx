@@ -41,7 +41,7 @@ const Main = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-
+      <Cart />
       <section className="bg-black">
         <div className="container mx-auto flex items-center justify-center h-[320px] relative">
           <Slider {...sliderSettings} className="w-full max-w-[900px]">
@@ -88,7 +88,7 @@ const Main = () => {
 
             ))}
 
-          <Cart />
+          
           </div>
         </div>
       </section>
