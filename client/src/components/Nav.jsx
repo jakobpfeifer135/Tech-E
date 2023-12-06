@@ -25,8 +25,8 @@ function NavTabs() {
 
         <li className="nav-item">
           <Link
-            to="/Products"
-            className={`hover:text-gray-300 ${currentPage === '/Products' ? 'font-bold' : ''}`}
+            to="/ProductsPage"
+            className={`hover:text-gray-300 ${currentPage === '/ProductsPage' ? 'font-bold' : ''}`}
           >
             Products
           </Link>
