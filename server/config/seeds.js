@@ -19,6 +19,15 @@ db.once('open', async () => {
 
   const products = await Product.insertMany([
     {
+      name: 'Tin of Cookies',
+      description:
+        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+      image: 'cookie-tin.jpg',
+      category: categories[0]._id,
+      price: 2.99,
+      quantity: 500
+    },
+    {
       details: 'QuantumByte',
       color: 'Silver',
       name: 'Laptop',

@@ -1,45 +1,50 @@
-// main.jsx
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
-
-// Bringing in the required imports from 'react-router-dom' to set up application routing behavior
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Checkout from './pages/Checkout.jsx';
-import HomePage from './pages/HomePage.jsx';
-import Login from './pages/Login.jsx';
-import Products from './pages/Products.jsx'
+import Main from './pages/HomePage.jsx'
+import App from './App.jsx';
+import ProductsPage from './pages/Home.jsx';
+import Detail from './pages/Detail';
+import NoMatch from './pages/NoMatch';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Success from './pages/Success';
+import OrderHistory from './pages/OrderHistory';
 
-
-// Define the accessible routes, and which components respond to which URL
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-
+    error: <NoMatch />,
     children: [
       {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: '/Checkout',
-        element: <Checkout />
-      },
-      {
-        path: '/Login',
-        element: <Login />
+        index: true, 
+        element: <Main />
       },
       {
         path: '/Products',
-        element: <Products />
-      },
- 
-    ],
-  },
+        element: <ProductsPage />
+      }, {
+        path: '/login',
+        element: <Login />
+      }, {
+        path: '/signup',
+        element: <Signup />
+      }, {
+        path: '/success',
+        element: <Success />
+      }, {
+        path: '/orderHistory',
+        element: <OrderHistory />
+      }, {
+        path: '/products/:id',
+        element: <Detail />
+      }
+      
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
-);
-
+)
