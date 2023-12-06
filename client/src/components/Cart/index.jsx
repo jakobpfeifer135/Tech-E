@@ -7,15 +7,15 @@ import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
-import './style.css';
-
+import '../../index.css';
+import { FaShoppingCart } from 'react-icons/fa';
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
+  const [getCheckout, { data, error }] = useLazyQuery(QUERY_CHECKOUT);
+if (error) { console.log(error);}
   // We check to see if there is a data object that exists, if so this means that a checkout session was returned from the backend
   // Then we should redirect to the checkout with a reference to our session id
   useEffect(() => {
@@ -64,13 +64,16 @@ const Cart = () => {
 
   if (!state.cartOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash">
-          🛒
-        </span>
+      <div className="cart-closed" 
+      // onClick={toggleCart}
+      >
+        {/* <FaShoppingCart className="text-2xl text-black" role='img' /> */}
       </div>
     );
   }
+
+   {/* Adjust the size with text-2xl or other utility classes */}
+
 
   return (
     <div className="cart">

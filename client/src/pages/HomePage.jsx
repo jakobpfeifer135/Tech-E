@@ -8,7 +8,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_PRODUCTS } from '../utils/queries';
-
+import Carousel1 from "../assets/images/carousel-img1.webp"
+import Carousel2 from "../assets/images/carousel-img2.webp"
+import Carousel3 from "../assets/images/carousel-img3.webp"
 import Cart from "../components/Cart";
 import ProductItem from '../components/ProductItem';
 
@@ -39,13 +41,13 @@ const Main = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-
+      <Cart />
       <section className="bg-black">
         <div className="container mx-auto flex items-center justify-center h-[320px] relative">
           <Slider {...sliderSettings} className="w-full max-w-[900px]">
-            {[1, 2, 3].map((index) => (
+            {[Carousel1,Carousel2,Carousel3].map((carouselImg, index) => (
               <div key={index} className="relative">
-                <img className="max-h-[300px] w-full object-cover" src={`../src/assets/images/carousel-img${index}.webp`} alt={`Special Item ${index}`} />
+                <img className="max-h-[300px] w-full object-cover" src={carouselImg} alt={`Special Item ${index}`} />
                 <button className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-4 py-2 rounded-md hover:bg-[--Gold] hover:text-black   font-serif ">Buy Now</button>
               </div>
             ))}
@@ -70,24 +72,22 @@ const Main = () => {
 
           {/* Right section for product cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:col-span-3">
-            {/* Advanced Product Cards */}
-            {products.map((product) => (
-              <ProductItem 
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
-              details={product.details}
-              description={product.description}
-              color={product.color}
-            />
+  {/* Display only the first 3 products */}
+  {products.slice(0, 3).map((product) => (
+    <ProductItem 
+      key={product._id}
+      _id={product._id}
+      image={product.image}
+      name={product.name}
+      price={product.price}
+      quantity={product.quantity}
+      details={product.details}
+      description={product.description}
+      color={product.color}
+    />
+  ))}
+</div>
 
-            ))}
-
-          <Cart />
-          </div>
         </div>
       </section>
 
