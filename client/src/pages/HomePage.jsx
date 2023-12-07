@@ -3,7 +3,6 @@ import { FaInstagram, FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaTruckFast } from 'react-icons/fa6';
 import { AiFillClockCircle, AiFillDollarCircle, AiFillPhone } from "react-icons/ai";
 import Slider from 'react-slick';
-// import ProductCard from '../components/ProductCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useQuery } from '@apollo/client';
@@ -48,7 +47,7 @@ const Main = () => {
             {[Carousel1,Carousel2,Carousel3].map((carouselImg, index) => (
               <div key={index} className="relative">
                 <img className="max-h-[300px] w-full object-cover" src={carouselImg} alt={`Special Item ${index}`} />
-                <button className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-4 py-2 rounded-md hover:bg-[--Gold] hover:text-black   font-serif ">Buy Now</button>
+                {/* <button className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-4 py-2 rounded-md hover:bg-[--Gold] hover:text-black   font-serif ">Buy Now</button> */}
               </div>
             ))}
           </Slider>
@@ -64,9 +63,11 @@ const Main = () => {
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold mb-4"> Experience Innovation at Its Best! </h2>
               <p className="text-gray-800 mb-4">Looking for cutting-edge technology that redefines the way you live, work, and play? Look no further! Introducing our top three tech products:</p>
+
               <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-[--Gold] hover:text-black  ">
-                Explore
+                <a href='/ProductsPage'>Explore</a>
               </button>
+
             </div>
           </div>
 

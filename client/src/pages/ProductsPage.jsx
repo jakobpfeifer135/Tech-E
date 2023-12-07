@@ -1,15 +1,24 @@
-import ProductList from "../components/ProductList";
+
+import ProductList from "../components/ProductListProdPage";
 import CategoryMenu from "../components/CategoryMenu";
 import Cart from "../components/Cart";
 
 const ProductsPage = () => {
   return (
-    <div className="container">
-      <CategoryMenu />
-      <ProductList />
-      <Cart />
+    <div>
+       <div>
+        <Cart />
+      </div>
+      <div>
+        <CategoryMenu />
+      </div>
+      <div>
+        <ProductList />
+      </div>
+     
     </div>
   );
 };
 
 export default ProductsPage;
+

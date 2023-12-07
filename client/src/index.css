@@ -97,7 +97,7 @@
 .cart {
   position: absolute;
   right: 0;
-  width: 375px;
+  width: 250px;
   z-index: 1000;
   background-color: white;
 }
