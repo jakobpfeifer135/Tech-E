@@ -18,15 +18,7 @@ db.once('open', async () => {
   console.log('categories seeded');
 
   const products = await Product.insertMany([
-    {
-      name: 'Tin of Cookies',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      category: categories[0]._id,
-      price: 2.99,
-      quantity: 500
-    },
+    
     {
       details: 'QuantumByte',
       color: 'Silver',
@@ -38,11 +30,11 @@ db.once('open', async () => {
       category: categories[0]._id,
     },
     {
-      details: 'NovaFusion',
-      color: 'Black',
+      details: 'IMac M3 24inch',
+      color: 'White',
       name: 'Desktop',
       description: 'A desktop computer',
-      image: 'https://t3.ftcdn.net/jpg/01/56/55/24/240_F_156552441_xlhQ0Nr4kV1xrxzngI6IjpJ7aeZJQMfD.jpg',
+      image: 'https://images.unsplash.com/photo-1494173853739-c21f58b16055?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       price: 645.00,
       quantity: 100,
       category: categories[0]._id,
@@ -98,21 +90,21 @@ db.once('open', async () => {
       category: categories[2]._id,
     },
     {
-      details: 'NovaFusion',
+      details: 'Netstrand HDMI',
       color: 'Black',
       name: 'DisplayPort',
-      description: 'A DisplayPort cable',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4KD_UyW0AzWXOBHN2ggm02l1gprcd6HoUcg&usqp=CAU',
+      description: 'High-definition Connectivity',
+      image: 'https://media.istockphoto.com/photos/-picture-id182461665?k=6&m=182461665&s=612x612&w=0&h=dQBkxuHcO2iWVKIWOye0kOjJ-S-2SShzngcx7OCaAHY=',
       price: 9.99,
       quantity: 100,
       category: categories[2]._id,
     },
     {
-      details: 'VertexEdge',
+      details: 'VeeTop Ethernet',
       color: 'White',
       name: 'Ethernet ',
       description: 'An ethernet cable',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGbs_d9wjlxeD-YIIEupTOFD6UgADr02EdsYS0KQlLAKIWuojgMQTETlshyK1gMRq57JM&usqp=CAU',
+      image: 'https://i5.walmartimages.com/asr/4b9aedc4-19ad-4f03-b0b4-dcea0cba812d.7d42bece64c32bd8a414e8c1434d14b6.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff',
       price: 9.99,
       quantity: 100,
       category: categories[2]._id,
@@ -152,7 +144,7 @@ db.once('open', async () => {
       color: 'Black',
       name: 'SmartWatch',
       description: 'A watch for everything',
-      image: '../src/assets/images/WhiteAirpods.webp',
+      image: 'https://media.istockphoto.com/photos/smart-watch-picture-id486993228?k=6&m=486993228&s=612x612&w=0&h=8Js5Aot9Ift4HJXp6tGJJKTOX7nQDb6OfRYkqlPuyBQ=',
       price: 159.99,
       quantity: 100,
       category: categories[4]._id,

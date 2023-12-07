@@ -41,11 +41,13 @@ function CategoryMenu() {
     });
   };
 
-  return (
-    <div>
-      <h2>Choose a Category:</h2>
+return (
+  <div className='flex flex-col items-center justify-center'>
+    <h2 className='my-6 text-center text-4xl font-serif'>Choose a Category:</h2>
+    <div className="flex flex-wrap justify-center">
       {categories.map((item) => (
         <button
+          className='px-4 font-serif mb-2 mx-2 bg-[--Navy] text-white rounded-md'
           key={item._id}
           onClick={() => {
             handleClick(item._id);
@@ -54,11 +56,17 @@ function CategoryMenu() {
           {item.name}
         </button>
       ))}
-      <button onClick={() => { handleClick('') }}>
-        All
-      </button>
     </div>
-  );
+    <button
+      className=' font-serif mt-2 text-xl font-semibold px-4 bg-[--Navy] text-white  rounded-md'
+      onClick={() => { handleClick('') }}
+    >
+      All
+    </button>
+  </div>
+);
+
+  
 }
 
 export default CategoryMenu;
