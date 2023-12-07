@@ -1,6 +1,7 @@
 import { useStoreContext } from "../../utils/GlobalState";
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import { TiDelete } from "react-icons/ti";
 
 const CartItem = ({ item }) => {
 
@@ -36,7 +37,7 @@ const CartItem = ({ item }) => {
   }
 
   return (
-    <div className="flex-row">
+    <div className="flex-row ml-4">
       <div>
         <img
           src={`${item.image}`}
@@ -44,21 +45,23 @@ const CartItem = ({ item }) => {
         />
       </div>
       <div>
-        <div>{item.name}, ${item.price}</div>
-        <div>
-          <span>Qty:</span>
+        <div className="font-serif">{item.name}, ${item.price}</div>
+        <div className="flex">
+          <span className="font-serif">Qty:</span>
           <input
             type="number"
             placeholder="1"
             value={item.purchaseQuantity}
             onChange={onChange}
+            className="max-w-[60px] font-semibold font-sans"
           />
           <span
+            className="text-lg cursor-pointer"
             role="img"
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
-            🗑️
+           <TiDelete />
           </span>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
-function ProductItem(item) {
+function ProductItemProdPage(item) {
   const [state, dispatch] = useStoreContext();
 
   const {
@@ -45,46 +45,47 @@ function ProductItem(item) {
 
 
   return (
-    <div>
-      <div key={_id} className="bg-gray-400 p-6 rounded-lg shadow-md border-4 border-black/20 flex flex-col h-full justify-center">
-        <h4 className="text-black pb-3 h-5 overflow-hidden">
+    
+    <div className="mt-5">
+      <div key={_id} className="bg-[--Navy] p-6 rounded-lg shadow-md border-4 border-white  flex-col justify-center max-w-[300px] mx-2 my-8">
+        <h4 className="text-black pb-3 h-16 overflow-hidden">
           {description} <br />
           <span style={{ fontSize: '1rem' }}>
             {color}
           </span>
         </h4>
   
-        <div className="mb-4" style={{ marginTop: '-80px' }}>
+        <div className="mb-4" style={{ marginTop: '-110px' }}>
           <img
-            className="border-4 border-black w-full h-40 object-cover object-center rounded-xl"
+            className="border-4 border-[--Navy] w-full h-40 object-cover object-center rounded-xl"
             src={image}
             alt={`Product ${_id}`}
           />
         </div>
   
-        <h3 className="font-bold text-lg text-center font-serif">{name}</h3>
-        <p className="text-white text-lg font-serif ">{details}</p>
-        <div className="font-serif mt-2">{quantity} {pluralize("item", quantity)} in stock</div>
+        <h3 className="font-bold text-lg text-center font-serif text-white">{name}</h3>
+        <p className="text-white">{details}</p>
+        <div className="font-serif mt-2 text-white">{quantity} {pluralize("item", quantity)} in stock</div>
         <Link
-          className="btn btn-primary btn-block btn-squared underline max-w-[90px]"
+          className="btn btn-primary btn-block text-white btn-squared underline max-w-[90px]"
           to={`/products/${_id}`}
         >
-          View Details
+          View Details  
         </Link>
+        
+        <span className="text-white font-serif max-w-[90px]">&nbsp;&nbsp;&nbsp;${price}</span>
   
-        <span className="text-black font-serif max-w-[90px]">${price}</span>
-       
-  
-        <button onClick={addToCart} className="btn btn-primary border-2 border-white btn-block btn-squared bg-black text-white rounded-2xl max-w-[150px] min-w-[130px] mx-auto mt-5 hover:min-w-[132px] hover:bg-[--Gold] hover:text-black hover:font-semibold">
+         <button onClick={addToCart} className="btn btn-primary border-2 border-white btn-block btn-squared bg-black text-white rounded-2xl max-w-[150px] min-w-[130px] mx-auto mt-5 hover:min-w-[132px] hover:bg-[--Gold] hover:text-black hover:font-semibold">
           Add to cart
         </button>
       </div>
     </div>
   );
   
+  
 }
 
-export default ProductItem;
+export default ProductItemProdPage;
 
 
   // return (
