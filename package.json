@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "mongoose": "^8.0.2"
+    "mongoose": "^8.0.2",
+    "stripe": "^14.7.0"
   },
   "devDependencies": {
     "concurrently": "^5.1.0"

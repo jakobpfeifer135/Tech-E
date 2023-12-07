@@ -10,7 +10,7 @@ import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import '../../index.css';
 import { FaShoppingCart } from 'react-icons/fa';
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
-const stripePromise = loadStripe('pk_test_51OK4ZcCofcKG0QK82JSz4cK96ezaLOYqsXL1pmFhpxmfkDAhuL2zdvmHi0cE0fpyBlbdaFyivZIYxdqyJKwbHTs800z9lMHa1J');
+const stripePromise = loadStripe('pk_live_51OKm3RHvHOESh9Eal8npC0EMG2q0ItEhnSzrFikGiRcbCO8zXX9DIItjgSfJ0vR7UmpCR1C8vPZxjbDQ158ETQ5b00obfb3Tk0');
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
