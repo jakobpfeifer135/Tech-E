@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import Logo from '../assets/images/Logo.webp'
@@ -8,9 +8,7 @@ function NavTabs() {
   const currentPage = useLocation().pathname;
   const [state, dispatch] = useStoreContext();
   return (
-
     <section className="bg-[#011638] flex justify-between items-center text-white border-b-4">
-
       <div className="logo">
         <img className='max-h-[100px] max-w-[200px]' src={Logo} alt="Tech-E" />
       </div>
@@ -24,7 +22,7 @@ function NavTabs() {
             Home
           </Link>
         </li>
-        
+
         <li className="nav-item">
           <Link
             to="/ProductsPage"
@@ -33,14 +31,22 @@ function NavTabs() {
             Products
           </Link>
         </li>
+
         <li className="nav-item">
-          <Link
-            to="/Login"
-            className={`hover:text-gray-300 ${currentPage === '/Login' ? 'font-bold' : ''}`}
-          >
-            Login/Sign Up
-          </Link>
+          {/* {loggedIn ? (
+            <button onClick={logout} className='hover:text-gray-300'>
+              Logout
+            </button>
+          ) : ( */}
+            <Link
+              to="/Login"
+              className={`hover:text-gray-300 ${currentPage === '/Login' ? 'font-bold' : ''}`}
+            >
+              Login/Sign Up
+            </Link>
+          {/* )} */}
         </li>
+
         <li className="nav-item mt-1">
           <Link
            
@@ -59,7 +65,4 @@ function NavTabs() {
   );
 }
 
-
 export default NavTabs;
-
-
